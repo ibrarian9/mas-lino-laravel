@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+
+    --color-primary: #5C3D2E;
+    --color-primary-dark: #3E2518;
+    --color-secondary: #E07B39;
+    --color-secondary-dark: #c96a2e;
+    --color-accent: #F4C430;
+    --color-light-bg: #FDF6EC;
+    --color-cream: #F5F0EB;
+    --color-card: #FFFFFF;
+    --color-border: #E8DDD4;
+    --color-text-dark: #2C1810;
+    --color-text-muted: #8B7355;
+    --color-success: #27AE60;
+    --color-warning: #F39C12;
+    --color-danger: #E74C3C;
+    --color-info: #3498DB;
+}
+
+/* Star rating component - needs real CSS for sibling selectors */
+.star-rating {
+    display: flex;
+    gap: 4px;
+    direction: rtl;
+    justify-content: center;
+}
+.star-rating input { display: none; }
+.star-rating label {
+    font-size: 1.6rem;
+    color: var(--color-border);
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+/* Status dot animation */
+@keyframes pulse-dot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+.animate-pulse-dot {
+    animation: pulse-dot 2s infinite;
+}
