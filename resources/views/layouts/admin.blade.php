@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin — Es Coklat Mas Lino')</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -36,6 +35,12 @@
             <div class="text-[0.65rem] uppercase tracking-[1.5px] opacity-50 px-3 pt-3 pb-1.5">ALAT</div>
             <a href="{{ route('admin.qrcode') }}" class="flex items-center gap-3 px-4 py-2.5 text-white/75 no-underline rounded-xl text-[0.85rem] font-medium transition-all mb-0.5 hover:bg-white/10 hover:text-white {{ request()->routeIs('admin.qrcode') ? '!bg-secondary !text-white' : '' }}">
                 <span class="material-symbols-outlined text-xl w-5 text-center">qr_code</span> QR Code
+            </a>
+            <a href="{{ route('admin.saw.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-white/75 no-underline rounded-xl text-[0.85rem] font-medium transition-all mb-0.5 hover:bg-white/10 hover:text-white {{ request()->routeIs('admin.saw.*') ? '!bg-secondary !text-white' : '' }}">
+                <span class="material-symbols-outlined text-xl w-5 text-center">analytics</span> Laporan SAW
+            </a>
+            <a href="{{ route('admin.sales.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-white/75 no-underline rounded-xl text-[0.85rem] font-medium transition-all mb-0.5 hover:bg-white/10 hover:text-white {{ request()->routeIs('admin.sales.*') ? '!bg-secondary !text-white' : '' }}">
+                <span class="material-symbols-outlined text-xl w-5 text-center">bar_chart</span> Laporan Penjualan
             </a>
 
             <div class="text-[0.65rem] uppercase tracking-[1.5px] opacity-50 px-3 pt-3 pb-1.5">AKUN</div>

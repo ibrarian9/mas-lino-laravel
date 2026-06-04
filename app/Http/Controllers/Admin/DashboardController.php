@@ -7,6 +7,9 @@ use App\Models\Pesanan;
 use App\Models\Menu;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Rating;
+use App\Models\DetailPesanan;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -42,5 +45,23 @@ class DashboardController extends Controller
             'pesananTerbaru',
             'topBundles'
         ));
+    }
+
+    public function resetData()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Rating::truncate();
+        DetailPesanan::truncate();
+        Pesanan::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        // Reset menu stats
+        Menu::query()->update([
+            'total_order_c2'      => 0,
+            'rating_rata_rata_c3' => 0,
+            'jumlah_rating'       => 0,
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Semua data pesanan, detail, dan rating berhasil direset.');
     }
 }

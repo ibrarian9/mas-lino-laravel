@@ -95,6 +95,17 @@
                 <div class="text-center text-text-muted py-5"><p class="text-sm">Belum ada data penjualan bundling</p></div>
             @endforelse
         </div>
+
+        <!-- Reset Data Button -->
+        <div class="px-4 pb-4 pt-2 border-t border-cream">
+            <form id="reset-data-form" action="{{ route('admin.resetData') }}" method="POST">
+                @csrf
+            </form>
+            <button type="button" onclick="confirmReset()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-danger border border-red-200 rounded-xl text-xs font-semibold cursor-pointer transition-colors">
+                <span class="material-symbols-outlined text-base">delete_sweep</span>
+                Reset Data Pesanan
+            </button>
+        </div>
     </div>
 </div>
 @endsection
@@ -106,5 +117,37 @@ setInterval(() => {
         .then(r => r.json())
         .then(data => { document.title = data.count > 0 ? '(' + data.count + ') Dashboard' : 'Dashboard — Es Coklat Mas Lino'; });
 }, 15000);
+
+function confirmReset() {
+    Swal.fire({
+        title: 'Reset Semua Data?',
+        html: '<div style="text-align:left; font-size:0.85rem; color:#8B7355;">' +
+              '<p>Ini akan menghapus <strong>semua</strong>:</p>' +
+              '<ul style="margin:8px 0; padding-left:20px;">' +
+              '<li>Data Pesanan</li>' +
+              '<li>Detail Pesanan</li>' +
+              '<li>Rating & Ulasan</li>' +
+              '<li>Statistik Menu (total order, rating)</li>' +
+              '</ul>' +
+              '<p style="color:#E74C3C; font-weight:600;">Aksi ini tidak bisa dibatalkan!</p></div>',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#E74C3C',
+        cancelButtonColor: '#8B7355',
+        confirmButtonText: 'Ya, Reset Semua',
+        cancelButtonText: 'Batal',
+        reverseButtons: true,
+        customClass: {
+            popup: '!rounded-2xl !font-[Poppins]',
+            title: '!text-lg !font-bold !text-[#2C1810]',
+            confirmButton: '!rounded-xl !font-semibold !px-6',
+            cancelButton: '!rounded-xl !font-semibold !px-6'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('reset-data-form').submit();
+        }
+    });
+}
 </script>
 @endsection

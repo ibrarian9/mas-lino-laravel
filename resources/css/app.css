@@ -54,3 +54,7 @@
 .animate-pulse-dot {
     animation: pulse-dot 2s infinite;
 }
+
+/* Hide scrollbar for horizontal carousel */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

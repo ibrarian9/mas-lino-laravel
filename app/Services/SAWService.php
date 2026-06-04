@@ -12,11 +12,34 @@ class SAWService
 
     public function calculate(): array
     {
+        return $this->calculateDetailed()['ranking'];
+    }
+
+    /**
+     * Full SAW calculation with detailed breakdown.
+     * Returns: bobot, raw data, min/max, normalized, ranking
+     */
+    public function calculateDetailed(): array
+    {
         $bundles = Menu::where('is_bundle', true)->where('is_active', true)->get();
 
-        if ($bundles->isEmpty()) return [];
+        $bobot = [
+            'c1' => ['nama' => 'Harga (C1)', 'nilai' => self::BOBOT_HARGA, 'tipe' => 'Cost'],
+            'c2' => ['nama' => 'Popularitas (C2)', 'nilai' => self::BOBOT_POPULARITAS, 'tipe' => 'Benefit'],
+            'c3' => ['nama' => 'Rating (C3)', 'nilai' => self::BOBOT_RATING, 'tipe' => 'Benefit'],
+        ];
 
-        // Ambil nilai C1, C2, C3
+        if ($bundles->isEmpty()) {
+            return [
+                'bobot' => $bobot,
+                'raw' => [],
+                'min_max' => [],
+                'normalized' => [],
+                'ranking' => [],
+            ];
+        }
+
+        // Raw criteria values
         $data = $bundles->map(function ($item) {
             return [
                 'id'      => $item->id_menu,
@@ -30,18 +53,24 @@ class SAWService
             ];
         })->toArray();
 
-        // Kondisi awal: jika semua C2 = 0, setarakan
+        // If all C2 = 0, equalize
         $allZeroC2 = collect($data)->every(fn($d) => $d['c2'] == 0);
         if ($allZeroC2) {
             $data = array_map(fn($d) => array_merge($d, ['c2' => 1]), $data);
         }
 
-        // Hitung min/max
+        // Min/Max
         $minC1 = min(array_column($data, 'c1'));
         $maxC2 = max(array_column($data, 'c2'));
         $maxC3 = max(array_column($data, 'c3'));
 
-        // Normalisasi & hitung preferensi
+        $minMax = [
+            'c1' => ['label' => 'Min C1', 'value' => $minC1],
+            'c2' => ['label' => 'Max C2', 'value' => $maxC2],
+            'c3' => ['label' => 'Max C3', 'value' => $maxC3],
+        ];
+
+        // Normalization & Preference
         foreach ($data as &$item) {
             $r1 = ($minC1 / $item['c1']);
             $r2 = ($maxC2 > 0) ? ($item['c2'] / $maxC2) : 1;
@@ -58,9 +87,20 @@ class SAWService
             );
         }
 
-        // Urutkan berdasarkan Vi tertinggi
+        // Sort by Vi descending
         usort($data, fn($a, $b) => $b['vi'] <=> $a['vi']);
 
-        return $data;
+        // Add rank
+        foreach ($data as $idx => &$item) {
+            $item['rank'] = $idx + 1;
+        }
+
+        return [
+            'bobot'      => $bobot,
+            'raw'        => $data,
+            'min_max'    => $minMax,
+            'normalized' => $data, // same array contains r1,r2,r3
+            'ranking'    => $data,
+        ];
     }
 }

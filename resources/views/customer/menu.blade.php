@@ -11,11 +11,58 @@
            oninput="filterMenu()">
 </div>
 
-<!-- Tabs -->
-<div class="flex gap-2 mb-5 overflow-x-auto pb-1">
+<!-- Rekomendasi SAW (Horizontal Carousel — always visible) -->
+@if(!empty($rekomendasi))
+<div class="mb-5">
+    <div class="flex items-center gap-2 mb-3">
+        <span class="material-symbols-outlined text-accent text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+        <h3 class="text-sm font-bold text-primary">Rekomendasi Untukmu</h3>
+        <span class="text-[0.65rem] bg-accent/20 text-accent px-2 py-0.5 rounded-full font-semibold">SAW</span>
+    </div>
+    <div class="relative -mx-4">
+        <div id="rekomendasi-carousel" class="flex gap-3 overflow-x-auto pb-3 px-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing" style="-webkit-overflow-scrolling: touch;">
+        @foreach($rekomendasi as $idx => $reko)
+        <div class="snap-start shrink-0 w-[160px] bg-white rounded-2xl overflow-hidden shadow-md relative {{ $idx === 0 ? 'ring-2 ring-accent' : '' }}">
+            <!-- Rank Badge -->
+            <span class="absolute top-2 left-2 z-10 w-6 h-6 rounded-full flex items-center justify-center text-[0.65rem] font-bold
+                {{ $idx === 0 ? 'bg-gradient-to-br from-yellow-400 to-orange-400 text-primary-dark' : '' }}
+                {{ $idx === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-400 text-white' : '' }}
+                {{ $idx === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-700 text-white' : '' }}
+                {{ $idx > 2 ? 'bg-primary/10 text-primary' : '' }}">
+                {{ $idx + 1 }}
+            </span>
+            <!-- Image -->
+            <div class="w-full h-[100px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-3xl">
+                @if($reko['gambar'])
+                    <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-cover">
+                @else
+                    📦
+                @endif
+            </div>
+            <!-- Info -->
+            <div class="px-2.5 py-2">
+                <div class="text-[0.72rem] font-semibold text-text-dark leading-tight mb-1 line-clamp-2 h-[2.2em]">{{ $reko['nama'] }}</div>
+                <div class="text-xs font-bold text-secondary mb-0.5">Rp {{ number_format($reko['harga'], 0, ',', '.') }}</div>
+                <div class="text-[0.6rem] text-text-muted flex items-center gap-0.5">
+                    <span class="material-symbols-outlined text-[0.6rem] text-accent" style="font-variation-settings: 'FILL' 1;">star</span>
+                    {{ number_format($reko['vi'], 3) }}
+                </div>
+            </div>
+            <!-- Add Button -->
+            <button class="w-full py-2 border-none bg-gradient-to-r from-secondary to-secondary-dark text-white font-semibold text-[0.7rem] cursor-pointer transition-opacity active:opacity-80 min-h-[36px] flex items-center justify-center gap-1" onclick="addToCart({{ $reko['id'] }})">
+                <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Tambah
+            </button>
+        </div>
+        @endforeach
+        </div>
+    </div>
+</div>
+@endif
+
+<!-- Tabs: Reguler & Bundling -->
+<div class="flex gap-2 mb-4 overflow-x-auto pb-1">
     <button class="menu-tab px-5 py-2 rounded-full text-xs font-semibold cursor-pointer border-2 border-border bg-white text-text-muted whitespace-nowrap transition-all min-h-[44px] active" onclick="switchTab('reguler', this)">🥤 Reguler</button>
     <button class="menu-tab px-5 py-2 rounded-full text-xs font-semibold cursor-pointer border-2 border-border bg-white text-text-muted whitespace-nowrap transition-all min-h-[44px]" onclick="switchTab('bundling', this)">📦 Bundling</button>
-    <button class="menu-tab px-5 py-2 rounded-full text-xs font-semibold cursor-pointer border-2 border-border bg-white text-text-muted whitespace-nowrap transition-all min-h-[44px]" onclick="switchTab('rekomendasi', this)">⭐ Rekomendasi</button>
 </div>
 
 <!-- Tab: Reguler -->
@@ -95,50 +142,6 @@
         </div>
     @endif
 </div>
-
-<!-- Tab: Rekomendasi -->
-<div class="tab-content hidden" id="tab-rekomendasi">
-    <div class="mb-4">
-        <h3 class="text-base font-bold text-primary">📊 Rekomendasi SAW</h3>
-        <p class="text-xs text-text-muted">Paket terbaik berdasarkan harga, popularitas, dan rating</p>
-    </div>
-
-    @if(empty($rekomendasi))
-        <div class="text-center py-10 text-text-muted">
-            <p>Belum ada data rekomendasi.</p>
-        </div>
-    @else
-        @foreach($rekomendasi as $idx => $reko)
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md mb-3 relative {{ $idx === 0 ? 'border-2 border-accent' : '' }}">
-                <span class="absolute top-2 left-2 z-10 px-3 py-1 rounded-full text-[0.7rem] font-bold
-                    {{ $idx === 0 ? 'bg-gradient-to-r from-yellow-400 to-orange-400 text-primary-dark' : '' }}
-                    {{ $idx === 1 ? 'bg-gradient-to-r from-gray-300 to-gray-400 text-white' : '' }}
-                    {{ $idx === 2 ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white' : '' }}">
-                    #{{ $idx + 1 }}
-                </span>
-                <div class="flex items-center gap-3 p-3.5">
-                    <div class="w-[70px] h-[70px] rounded-xl bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-3xl shrink-0 overflow-hidden">
-                        @if($reko['gambar'])
-                            <img src="{{ asset('storage/' . $reko['gambar']) }}" class="w-full h-full object-cover rounded-xl">
-                        @else
-                            📦
-                        @endif
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-sm font-semibold mb-0.5">{{ $reko['nama'] }}</h4>
-                        <div class="text-sm font-bold text-secondary">Rp {{ number_format($reko['harga'], 0, ',', '.') }}</div>
-                        <div class="text-[0.7rem] text-text-muted">Skor SAW: {{ number_format($reko['vi'], 4) }}</div>
-                    </div>
-                    <div class="flex flex-col items-end gap-1.5">
-                        <button class="px-3 py-2 bg-secondary text-white rounded-lg text-xs font-semibold cursor-pointer border-none hover:opacity-90 flex items-center gap-1" onclick="addToCart({{ $reko['id'] }})">
-                            <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    @endif
-</div>
 @endsection
 
 @section('scripts')
@@ -181,5 +184,34 @@ function filterMenu() {
         item.style.display = item.dataset.name.includes(q) ? '' : 'none';
     });
 }
+
+// Desktop drag-to-scroll for recommendation carousel
+(function() {
+    const el = document.getElementById('rekomendasi-carousel');
+    if (!el) return;
+    let isDown = false, startX, scrollLeft;
+
+    el.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+    });
+    el.addEventListener('mouseleave', () => isDown = false);
+    el.addEventListener('mouseup', () => isDown = false);
+    el.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        el.scrollLeft = scrollLeft - (x - startX);
+    });
+
+    // Mouse wheel horizontal scroll
+    el.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > 0) {
+            e.preventDefault();
+            el.scrollLeft += e.deltaY;
+        }
+    }, { passive: false });
+})();
 </script>
 @endsection
