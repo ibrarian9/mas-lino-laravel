@@ -11,7 +11,7 @@ class OrderManagementController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Pesanan::with('details.menu')->orderByDesc('waktu_pesan');
+        $query = Pesanan::with('details.menu')->orderByDesc('id_pesanan');
 
         if ($request->filled('status_pesanan')) {
             $query->where('status_pesanan', $request->status_pesanan);

@@ -28,7 +28,7 @@ class DashboardController extends Controller
         ];
 
         $pesananTerbaru = Pesanan::with('details.menu')
-            ->orderByDesc('waktu_pesan')
+            ->orderByDesc('id_pesanan')
             ->limit(10)
             ->get();
 
