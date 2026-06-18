@@ -98,15 +98,15 @@
                 text: options.text || 'Apakah kamu yakin?',
                 icon: options.icon || 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#E07B39',
-                cancelButtonColor: '#8B7355',
+                confirmButtonColor: '#D42426',
+                cancelButtonColor: '#5A6E8A',
                 confirmButtonText: options.confirmText || 'Ya, lanjutkan',
                 cancelButtonText: options.cancelText || 'Batal',
                 reverseButtons: true,
                 customClass: {
                     popup: '!rounded-2xl !font-[Poppins]',
-                    title: '!text-lg !font-bold !text-[#2C1810]',
-                    htmlContainer: '!text-sm !text-[#8B7355]',
+                    title: '!text-lg !font-bold !text-[#1A2744]',
+                    htmlContainer: '!text-sm !text-[#5A6E8A]',
                     confirmButton: '!rounded-xl !font-semibold !px-6',
                     cancelButton: '!rounded-xl !font-semibold !px-6'
                 }

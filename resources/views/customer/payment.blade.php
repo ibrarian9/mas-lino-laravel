@@ -103,7 +103,7 @@
                     icon: 'success',
                     title: 'Pembayaran Berhasil!',
                     text: 'Terima kasih, pesanan kamu sedang diproses.',
-                    confirmButtonColor: '#E07B39',
+                    confirmButtonColor: '#D42426',
                     customClass: { popup: '!rounded-2xl !font-[Poppins]' }
                 }).then(() => {
                     window.location.href = '{{ route("order.status", $pesanan->id_pesanan) }}';
@@ -117,7 +117,7 @@
                     icon: 'error',
                     title: 'Pembayaran Gagal',
                     text: 'Terjadi kesalahan. Silakan coba lagi.',
-                    confirmButtonColor: '#E07B39',
+                    confirmButtonColor: '#D42426',
                     customClass: { popup: '!rounded-2xl !font-[Poppins]' }
                 });
             },

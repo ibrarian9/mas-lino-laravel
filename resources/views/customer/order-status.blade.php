@@ -52,7 +52,7 @@
                             $dotCls = "$dotBase bg-success text-white shadow-[0_0_0_6px_rgba(39,174,96,0.15)]";
                             $labelCls = "$labelBase text-success";
                         } elseif ($idx == $currentIdx) {
-                            $dotCls = "$dotBase bg-secondary text-white animate-pulse-dot shadow-[0_0_0_6px_rgba(224,123,57,0.2)]";
+                            $dotCls = "$dotBase bg-secondary text-white animate-pulse-dot shadow-[0_0_0_6px_rgba(212,36,38,0.2)]";
                             $labelCls = "$labelBase text-secondary";
                         } else {
                             $dotCls = "$dotBase bg-border text-text-muted";
@@ -127,7 +127,7 @@ function pollStatus() {
                     dot.classList.add('bg-success', 'text-white', 'shadow-[0_0_0_6px_rgba(39,174,96,0.15)]');
                     label.classList.add('text-success');
                 } else if (idx === currentIdx) {
-                    dot.classList.add('bg-secondary', 'text-white', 'animate-pulse-dot', 'shadow-[0_0_0_6px_rgba(224,123,57,0.2)]');
+                    dot.classList.add('bg-secondary', 'text-white', 'animate-pulse-dot', 'shadow-[0_0_0_6px_rgba(212,36,38,0.2)]');
                     label.classList.add('text-secondary');
                 } else {
                     dot.classList.add('bg-border', 'text-text-muted');

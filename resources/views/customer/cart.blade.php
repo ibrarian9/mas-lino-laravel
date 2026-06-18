@@ -21,7 +21,7 @@
         @foreach($cart as $key => $item)
             <div class="bg-white rounded-2xl shadow-sm mb-3" id="cart-{{ $item['id_menu'] }}">
                 <div class="flex items-center gap-3 p-3.5">
-                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-2xl shrink-0 overflow-hidden">
+                    <div class="w-14 h-14 rounded-xl bg-white flex items-center justify-center text-2xl shrink-0 overflow-hidden">
                         @if($item['gambar'])
                             <img src="{{ asset('storage/' . $item['gambar']) }}" class="w-full h-full object-contain rounded-xl">
                         @else

@@ -121,7 +121,7 @@ setInterval(() => {
 function confirmReset() {
     Swal.fire({
         title: 'Reset Semua Data?',
-        html: '<div style="text-align:left; font-size:0.85rem; color:#8B7355;">' +
+        html: '<div style="text-align:left; font-size:0.85rem; color:#5A6E8A;">' +
               '<p>Ini akan menghapus <strong>semua</strong>:</p>' +
               '<ul style="margin:8px 0; padding-left:20px;">' +
               '<li>Data Pesanan</li>' +
@@ -133,13 +133,13 @@ function confirmReset() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#E74C3C',
-        cancelButtonColor: '#8B7355',
+        cancelButtonColor: '#5A6E8A',
         confirmButtonText: 'Ya, Reset Semua',
         cancelButtonText: 'Batal',
         reverseButtons: true,
         customClass: {
             popup: '!rounded-2xl !font-[Poppins]',
-            title: '!text-lg !font-bold !text-[#2C1810]',
+            title: '!text-lg !font-bold !text-[#1A2744]',
             confirmButton: '!rounded-xl !font-semibold !px-6',
             cancelButton: '!rounded-xl !font-semibold !px-6'
         }

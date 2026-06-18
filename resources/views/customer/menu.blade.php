@@ -32,7 +32,7 @@
                 {{ $idx + 1 }}
             </span>
             <!-- Image -->
-            <div class="w-full h-[100px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-3xl">
+            <div class="w-full h-[100px] bg-white flex items-center justify-center text-3xl">
                 @if($reko['gambar'])
                     <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-contain">
                 @else
@@ -76,7 +76,7 @@
         <div class="grid grid-cols-2 gap-3">
             @foreach($reguler as $item)
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
-                    <div class="w-full h-[120px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-4xl">
+                    <div class="w-full h-[120px] bg-white flex items-center justify-center text-4xl">
                         @if($item->gambar)
                             <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
                         @else
@@ -112,7 +112,7 @@
         <div class="grid grid-cols-2 gap-3">
             @foreach($bundling as $item)
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
-                    <div class="w-full h-[120px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-4xl">
+                    <div class="w-full h-[120px] bg-white flex items-center justify-center text-4xl">
                         @if($item->gambar)
                             <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
                         @else
