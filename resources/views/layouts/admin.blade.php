@@ -7,6 +7,7 @@
     <title>@yield('title', 'Admin — Es Coklat Mas Lino')</title>
     <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -14,9 +15,12 @@
 
     <!-- Sidebar -->
     <aside class="w-[260px] bg-gradient-to-b from-primary to-primary-dark text-white fixed top-0 left-0 h-screen z-[1000] overflow-y-auto transition-transform max-md:-translate-x-full" id="sidebar">
-        <div class="px-5 py-6 border-b border-white/10">
-            <h2 class="text-[1.1rem] font-bold">🍫 Es Coklat Mas Lino</h2>
-            <small class="text-[0.7rem] opacity-70">Panel Admin / Kasir</small>
+        <div class="px-5 py-6 border-b border-white/10 flex items-center gap-3">
+            <img src="{{ asset('logo.png') }}" class="h-10 w-10 object-contain rounded-lg bg-white p-0.5 shrink-0" alt="Logo">
+            <div>
+                <h2 class="text-[1rem] font-bold leading-tight">Es Coklat Mas Lino</h2>
+                <small class="text-[0.65rem] opacity-70">Panel Admin / Kasir</small>
+            </div>
         </div>
         <nav class="p-3">
             <div class="text-[0.65rem] uppercase tracking-[1.5px] opacity-50 px-3 pt-3 pb-1.5">UTAMA</div>

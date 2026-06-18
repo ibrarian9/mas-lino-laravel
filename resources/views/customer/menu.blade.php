@@ -34,7 +34,7 @@
             <!-- Image -->
             <div class="w-full h-[100px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-3xl">
                 @if($reko['gambar'])
-                    <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-contain">
                 @else
                     📦
                 @endif
@@ -45,7 +45,7 @@
                 <div class="text-xs font-bold text-secondary mb-0.5">Rp {{ number_format($reko['harga'], 0, ',', '.') }}</div>
                 <div class="text-[0.6rem] text-text-muted flex items-center gap-0.5">
                     <span class="material-symbols-outlined text-[0.6rem] text-accent" style="font-variation-settings: 'FILL' 1;">star</span>
-                    {{ number_format($reko['vi'], 3) }}
+                    {{ round($reko['menu']->rating_rata_rata_c3) }}
                 </div>
             </div>
             <!-- Add Button -->
@@ -78,7 +78,7 @@
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
                     <div class="w-full h-[120px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-4xl">
                         @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-cover">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
                         @else
                             🥤
                         @endif
@@ -114,7 +114,7 @@
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
                     <div class="w-full h-[120px] bg-gradient-to-br from-border to-light-bg flex items-center justify-center text-4xl">
                         @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-cover">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
                         @else
                             📦
                         @endif

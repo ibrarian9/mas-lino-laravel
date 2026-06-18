@@ -8,17 +8,21 @@
     <meta name="description" content="Es Coklat Mas Lino — Pesan minuman coklat favorit kamu langsung dari meja!">
     <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans bg-light-bg text-text-dark min-h-screen pb-24 antialiased">
 
     <!-- Top Header -->
-    <div class="bg-gradient-to-br from-primary to-primary-dark text-white px-5 py-4 sticky top-0 z-50 shadow-lg">
+    <div class="bg-gradient-to-br from-primary to-primary-dark text-white px-5 py-3 sticky top-0 z-50 shadow-lg">
         <div class="flex justify-between items-center">
-            <div>
-                <h1 class="text-lg font-bold tracking-tight">🍫 Es Coklat Mas Lino</h1>
-                <div class="text-[0.7rem] opacity-80 font-light mt-0.5">Jl. Bangau Sakti, Pekanbaru</div>
+            <div class="flex items-center gap-2.5">
+                <img src="{{ asset('logo.png') }}" class="h-9 w-auto object-contain rounded-lg" alt="Logo">
+                <div>
+                    <h1 class="text-base font-bold tracking-tight leading-tight">Es Coklat Mas Lino</h1>
+                    <div class="text-[0.65rem] opacity-80 font-light mt-0.5">Jl. Bangau Sakti, Pekanbaru</div>
+                </div>
             </div>
             @if(session('no_meja'))
                 <div class="bg-accent text-primary-dark px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">

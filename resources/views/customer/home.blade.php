@@ -3,8 +3,8 @@
 @section('title', 'Es Coklat Mas Lino — Selamat Datang')
 
 @section('content')
-<div class="text-center pt-10 pb-5">
-    <div class="text-6xl mb-2">🍫</div>
+<div class="text-center pt-8 pb-5">
+    <img src="{{ asset('logo.png') }}" class="h-24 w-auto object-contain mx-auto mb-4" alt="Logo">
     <h2 class="text-2xl font-extrabold text-primary mb-1">Es Coklat Mas Lino</h2>
     <p class="text-text-muted text-sm">Jl. Bangau Sakti, Pekanbaru</p>
 </div>
