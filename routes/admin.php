@@ -16,7 +16,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::post('/reset-data', [DashboardController::class, 'resetData'])->name('resetData');
 
         // Manajemen Pesanan
         Route::get('/orders', [OrderManagementController::class, 'index'])->name('orders.index');
@@ -29,15 +28,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('menu', MenuController::class);
         Route::post('/menu/{id}/toggle-active', [MenuController::class, 'toggleActive'])->name('menu.toggleActive');
 
-        // QR Code
-        Route::get('/qrcode', [QRCodeController::class, 'generate'])->name('qrcode');
+        // === Hanya Admin Manajemen ===
+        Route::middleware('admin.manajemen')->group(function () {
+            // Reset Data
+            Route::post('/reset-data', [DashboardController::class, 'resetData'])->name('resetData');
 
-        // SAW Report
-        Route::get('/saw-report', [SAWReportController::class, 'index'])->name('saw.index');
-        Route::get('/saw-report/export', [SAWReportController::class, 'exportExcel'])->name('saw.export');
+            // QR Code
+            Route::get('/qrcode', [QRCodeController::class, 'generate'])->name('qrcode');
 
-        // Sales Report
-        Route::get('/sales-report', [SalesReportController::class, 'index'])->name('sales.index');
-        Route::get('/sales-report/export', [SalesReportController::class, 'exportExcel'])->name('sales.export');
+            // SAW Report
+            Route::get('/saw-report', [SAWReportController::class, 'index'])->name('saw.index');
+            Route::get('/saw-report/export', [SAWReportController::class, 'exportExcel'])->name('saw.export');
+
+            // Sales Report
+            Route::get('/sales-report', [SalesReportController::class, 'index'])->name('sales.index');
+            Route::get('/sales-report/export', [SalesReportController::class, 'exportExcel'])->name('sales.export');
+        });
     });
 });

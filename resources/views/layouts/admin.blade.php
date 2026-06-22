@@ -19,7 +19,7 @@
             <img src="{{ asset('logo.png') }}" class="h-10 w-10 object-contain rounded-lg bg-white p-0.5 shrink-0" alt="Logo">
             <div>
                 <h2 class="text-[1rem] font-bold leading-tight">Es Coklat Mas Lino</h2>
-                <small class="text-[0.65rem] opacity-70">Panel Admin / Kasir</small>
+                <small class="text-[0.65rem] opacity-70">{{ Auth::guard('admin')->user()->isManajemen() ? 'Admin Manajemen' : 'Admin Kasir' }}</small>
             </div>
         </div>
         <nav class="p-3">
@@ -36,6 +36,7 @@
                 <span class="material-symbols-outlined text-xl w-5 text-center">coffee</span> Menu
             </a>
 
+            @if(Auth::guard('admin')->user()->isManajemen())
             <div class="text-[0.65rem] uppercase tracking-[1.5px] opacity-50 px-3 pt-3 pb-1.5">ALAT</div>
             <a href="{{ route('admin.qrcode') }}" class="flex items-center gap-3 px-4 py-2.5 text-white/75 no-underline rounded-xl text-[0.85rem] font-medium transition-all mb-0.5 hover:bg-white/10 hover:text-white {{ request()->routeIs('admin.qrcode') ? '!bg-secondary !text-white' : '' }}">
                 <span class="material-symbols-outlined text-xl w-5 text-center">qr_code</span> QR Code
@@ -46,6 +47,7 @@
             <a href="{{ route('admin.sales.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-white/75 no-underline rounded-xl text-[0.85rem] font-medium transition-all mb-0.5 hover:bg-white/10 hover:text-white {{ request()->routeIs('admin.sales.*') ? '!bg-secondary !text-white' : '' }}">
                 <span class="material-symbols-outlined text-xl w-5 text-center">bar_chart</span> Laporan Penjualan
             </a>
+            @endif
 
             <div class="text-[0.65rem] uppercase tracking-[1.5px] opacity-50 px-3 pt-3 pb-1.5">AKUN</div>
             <form action="{{ route('admin.logout') }}" method="POST" class="m-0" id="logout-form">

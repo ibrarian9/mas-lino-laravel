@@ -96,7 +96,8 @@
             @endforelse
         </div>
 
-        <!-- Reset Data Button -->
+        <!-- Reset Data Button (Manajemen only) -->
+        @if(Auth::guard('admin')->user()->isManajemen())
         <div class="px-4 pb-4 pt-2 border-t border-cream">
             <form id="reset-data-form" action="{{ route('admin.resetData') }}" method="POST">
                 @csrf
@@ -106,6 +107,7 @@
                 Reset Data Pesanan
             </button>
         </div>
+        @endif
     </div>
 </div>
 @endsection

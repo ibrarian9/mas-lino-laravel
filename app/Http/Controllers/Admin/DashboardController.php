@@ -28,7 +28,7 @@ class DashboardController extends Controller
         ];
 
         $pesananTerbaru = Pesanan::with('details.menu')
-            ->orderByDesc('id_pesanan')
+            ->orderByDesc('waktu_pesan')
             ->limit(10)
             ->get();
 
@@ -55,13 +55,30 @@ class DashboardController extends Controller
         Pesanan::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        // Reset menu stats
+        // Reset rating stats
         Menu::query()->update([
-            'total_order_c2'      => 0,
-            'rating_rata_rata_c3' => 0,
+            'rating_rata_rata_c3' => 3.0,
             'jumlah_rating'       => 0,
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Semua data pesanan, detail, dan rating berhasil direset.');
+        // Kembalikan nilai C2 bundling ke nilai awal
+        $c2Awal = [
+            1  => 0.400183,
+            2  => 0.699956,
+            3  => 0.400183,
+            4  => 0.699956,
+            5  => 0.277889,
+            6  => 0.577662,
+            7  => 0.277889,
+            8  => 0.577662,
+            9  => 0.122268,
+            10 => 0.422042,
+        ];
+
+        foreach ($c2Awal as $id => $val) {
+            Menu::where('id_menu', $id)->update(['total_order_c2' => $val]);
+        }
+
+        return redirect()->route('admin.dashboard')->with('success', 'Semua data pesanan, detail, rating, dan statistik menu berhasil direset.');
     }
 }
