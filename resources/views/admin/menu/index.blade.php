@@ -22,7 +22,7 @@
                     <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Diskon</th>
                     <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Harga Akhir</th>
                     <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Rating</th>
-                    <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Terjual</th>
+
                     <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Status</th>
                     <th class="px-4 py-3 text-xs font-semibold text-text-muted uppercase tracking-wide">Aksi</th>
                 </tr>
@@ -52,7 +52,7 @@
                         @endfor
                         <br><small class="text-text-muted">{{ $menu->jumlah_rating }} ulasan</small>
                     </td>
-                    <td class="px-4 py-3">{{ $menu->total_order_c2 }}</td>
+
                     <td class="px-4 py-3">
                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[0.65rem] font-semibold {{ $menu->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">{{ $menu->is_active ? 'Aktif' : 'Nonaktif' }}</span>
                     </td>
@@ -71,7 +71,7 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="10" class="text-center text-text-muted py-8">Belum ada menu</td></tr>
+                <tr><td colspan="9" class="text-center text-text-muted py-8">Belum ada menu</td></tr>
                 @endforelse
             </tbody>
         </table>
