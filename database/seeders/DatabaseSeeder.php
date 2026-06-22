@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             BundlingSeeder::class,
             SalesSeeder::class,
+            RegulerSeeder::class
         ]);
     }
 }
