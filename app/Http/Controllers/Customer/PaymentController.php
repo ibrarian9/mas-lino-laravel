@@ -34,7 +34,9 @@ class PaymentController extends Controller
             'metode_bayar'      => $request->metode_bayar,
             'status_pembayaran' => 'menunggu',
             'status_pesanan'    => 'baru',
-            'midtrans_order_id' => $request->metode_bayar === 'non_tunai' ? $orderId : null,
+            'midtrans_order_id' => $request->metode_bayar === 'non_tunai'
+                ? $orderId . '-' . time()
+                : null,
             'waktu_pesan'       => now(),
         ]);
 
@@ -75,7 +77,7 @@ class PaymentController extends Controller
                 }
 
                 $snapToken = $midtrans->createSnapToken([
-                    'order_id'    => $pesanan->id_pesanan,
+                    'order_id'    => $pesanan->midtrans_order_id,
                     'total_bayar' => $pesanan->total_bayar,
                     'no_meja'     => $pesanan->no_meja,
                     'items'       => $items,

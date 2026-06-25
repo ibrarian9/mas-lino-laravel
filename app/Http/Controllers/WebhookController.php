@@ -21,8 +21,8 @@ class WebhookController extends Controller
             return response()->json(['message' => 'Invalid signature'], 403);
         }
 
-        // Cari pesanan — jika tidak ditemukan (misalnya test notification), tetap return 200
-        $pesanan = Pesanan::find($orderId);
+        // Cari pesanan via midtrans_order_id — jika tidak ditemukan (misalnya test notification), tetap return 200
+        $pesanan = Pesanan::where('midtrans_order_id', $orderId)->first();
         if (!$pesanan) {
             return response()->json(['message' => 'Order not found, notification acknowledged'], 200);
         }
