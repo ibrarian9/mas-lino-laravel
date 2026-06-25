@@ -20,7 +20,7 @@
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-xl shrink-0 overflow-hidden">
                             @if($detail->menu->gambar)
-                                <img src="{{ asset('storage/' . $detail->menu->gambar) }}" class="w-full h-full object-contain rounded-xl">
+                                <img src="{{ asset('storage/' . $detail->menu->gambar) }}" class="w-full h-full object-contain rounded-xl" width="64" height="64" loading="lazy" decoding="async">
                             @else
                                 🍫
                             @endif

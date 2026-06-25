@@ -33,7 +33,7 @@
                     <td class="px-4 py-3">
                         <div class="w-12 h-12 rounded-lg bg-cream flex items-center justify-center text-xl overflow-hidden">
                             @if($menu->gambar)
-                                <img src="{{ asset('storage/' . $menu->gambar) }}" class="w-full h-full object-cover">
+                                <img src="{{ asset('storage/' . $menu->gambar) }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
                             @else
                                 {{ $menu->is_bundle ? '📦' : '🥤' }}
                             @endif

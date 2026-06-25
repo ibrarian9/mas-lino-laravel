@@ -6,13 +6,13 @@
     <title>Login Admin — Es Coklat Mas Lino</title>
     <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('logo-xs.png') }}" type="image/png">
     @vite(['resources/css/app.css'])
 </head>
 <body class="font-sans min-h-screen flex items-center justify-center bg-gradient-to-br from-primary via-primary-dark to-text-dark p-5">
     <div class="bg-white rounded-2xl px-8 py-10 w-full max-w-[400px] shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
         <div class="text-center mb-8">
-            <img src="{{ asset('logo.png') }}" class="h-20 w-auto object-contain mx-auto mb-3" alt="Logo">
+            <img src="{{ asset('logo-sm.png') }}" width="80" height="80" class="h-20 w-auto object-contain mx-auto mb-3" alt="Logo" decoding="async">
             <h1 class="text-xl font-bold text-primary">Es Coklat Mas Lino</h1>
             <p class="text-xs text-text-muted">Login Panel Admin / Kasir</p>
         </div>

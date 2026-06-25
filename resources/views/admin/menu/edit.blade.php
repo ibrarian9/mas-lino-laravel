@@ -32,7 +32,7 @@
             <div class="mb-4">
                 <label for="gambar" class="block font-semibold text-sm mb-1.5 text-primary">Gambar</label>
                 @if($menu->gambar)
-                    <div class="mb-2"><img src="{{ asset('storage/' . $menu->gambar) }}" class="w-24 h-24 object-cover rounded-lg"></div>
+                    <div class="mb-2"><img src="{{ asset('storage/' . $menu->gambar) }}" class="w-24 h-24 object-cover rounded-lg" loading="lazy" decoding="async"></div>
                 @endif
                 <input type="file" name="gambar" id="gambar" class="w-full px-4 py-3 border-2 border-border rounded-xl text-sm" accept="image/*">
                 <small class="text-text-muted text-xs">Kosongkan jika tidak ingin mengganti gambar</small>

@@ -7,9 +7,11 @@
     <title>@yield('title', 'Es Coklat Mas Lino')</title>
     <meta name="description" content="Es Coklat Mas Lino — Pesan minuman coklat favorit kamu langsung dari meja!">
     <link rel="preload" href="{{ asset('fonts/material-symbols-outlined.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('logo-sm.png') }}" as="image">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
-    <link rel="icon" href="{{ asset('logo.png') }}" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="{{ asset('logo-xs.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans bg-light-bg text-text-dark min-h-screen pb-24 antialiased">
@@ -18,7 +20,7 @@
     <div class="bg-gradient-to-br from-primary to-primary-dark text-white px-5 py-3 sticky top-0 z-50 shadow-lg">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-2.5">
-                <img src="{{ asset('logo.png') }}" class="h-9 w-auto object-contain rounded-lg" alt="Logo">
+                <img src="{{ asset('logo-sm.png') }}" width="36" height="36" class="h-9 w-auto object-contain rounded-lg" alt="Logo" decoding="async">
                 <div>
                     <h1 class="text-base font-bold tracking-tight leading-tight">Es Coklat Mas Lino</h1>
                     <div class="text-[0.65rem] opacity-80 font-light mt-0.5">Jl. Bangau Sakti, Pekanbaru</div>
@@ -77,11 +79,11 @@
     <script>
         const Toast = Swal.mixin({
             toast: true,
-            position: 'bottom',
+            position: 'top',
             showConfirmButton: false,
             timer: 2500,
             timerProgressBar: true,
-            customClass: { popup: '!rounded-full !px-5 !py-2 !text-sm !font-medium' },
+            customClass: { popup: '!rounded-full !px-5 !py-2 !text-sm !font-medium !mt-14' },
             didOpen: (toast) => {
                 toast.onmouseenter = Swal.stopTimer;
                 toast.onmouseleave = Swal.resumeTimer;

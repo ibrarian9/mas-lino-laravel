@@ -34,7 +34,7 @@
             <!-- Image -->
             <div class="w-full h-[100px] bg-white flex items-center justify-center text-3xl">
                 @if($reko['gambar'])
-                    <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-contain">
+                    <img src="{{ asset('storage/' . $reko['gambar']) }}" alt="{{ $reko['nama'] }}" class="w-full h-full object-contain" width="160" height="100" loading="lazy" decoding="async">
                 @else
                     📦
                 @endif
@@ -78,7 +78,7 @@
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
                     <div class="w-full h-[120px] bg-white flex items-center justify-center text-4xl">
                         @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain" width="180" height="120" loading="lazy" decoding="async">
                         @else
                             🥤
                         @endif
@@ -114,7 +114,7 @@
                 <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-sm transition-transform active:scale-[0.98] relative" data-name="{{ strtolower($item->nama_menu) }}">
                     <div class="w-full h-[120px] bg-white flex items-center justify-center text-4xl">
                         @if($item->gambar)
-                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_menu }}" class="w-full h-full object-contain" width="180" height="120" loading="lazy" decoding="async">
                         @else
                             📦
                         @endif

@@ -81,7 +81,7 @@ class PaymentController extends Controller
                     'items'       => $items,
                 ]);
             } catch (\Exception $e) {
-                // If Midtrans fails, still show the page without snap token
+                \Log::error('Midtrans Snap Token Error: ' . $e->getMessage());
             }
         }
 
